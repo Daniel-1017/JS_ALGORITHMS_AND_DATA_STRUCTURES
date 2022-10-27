@@ -86,6 +86,14 @@ class DoublyLinkedList {
     }
     return current;
   }
+  set(idx, val) {
+    const result = this.get(idx);
+    if (result && result != null) {
+      result.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 const first = new DoublyLinkedList();
