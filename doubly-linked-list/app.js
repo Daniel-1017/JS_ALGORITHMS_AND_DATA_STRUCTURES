@@ -108,6 +108,20 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+  remove(idx) {
+    if (idx < 0 || idx >= this.length) return undefined;
+    if (idx === 0) return !!this.shift();
+    if (idx === this.length - 1) return !!this.pop();
+
+    const removedNode = this.get(idx);
+    const beforeNode = removedNode.prev;
+    const afterNode = removedNode.next;
+
+    (beforeNode.next = afterNode), (afterNode.prev = beforeNode);
+    (removedNode.next = null), (removedNode.prev = null);
+    this.length--;
+    return true;
+  }
 }
 
 const first = new DoublyLinkedList();
