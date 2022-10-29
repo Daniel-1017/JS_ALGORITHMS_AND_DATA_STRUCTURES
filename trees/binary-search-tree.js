@@ -52,3 +52,11 @@ class BinarySearchTree {
 }
 
 const BST = new BinarySearchTree();
+
+/* 
+BOG O OF BST
+insertion - O(log n)
+searching - O(log n)
+NOT guaranteed!
+IF WE HAVE A BST WITH ONLY ONE SIDE
+*/
