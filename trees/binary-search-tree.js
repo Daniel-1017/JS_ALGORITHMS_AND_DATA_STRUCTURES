@@ -34,6 +34,21 @@ class BinarySearchTree {
       }
     }
   }
+  contains(val) {
+    if (!this.root) return false;
+    let current = this.root,
+      found = false;
+    while (current && !found) {
+      if (val < current.val) {
+        current = current.left;
+      } else if (val > current.val) {
+        current = current.right;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 const BST = new BinarySearchTree();
