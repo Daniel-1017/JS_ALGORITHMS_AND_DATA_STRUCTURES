@@ -1,9 +1,17 @@
-class MaxBinaryHeap {
-  constructor() {
-    this.val = [55, 39, 41, 18, 27, 12, 33];
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
   }
-  insert(val) {
-    this.val.push(val);
+}
+
+class PriorityQueue {
+  constructor() {
+    this.val = [];
+  }
+  enqueue(val, priority) {
+    const node = new Node(val, priority);
+    this.val.push(node);
     this.bubbleUp();
   }
   bubbleUp() {
@@ -12,20 +20,20 @@ class MaxBinaryHeap {
     while (idx > 0) {
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.val[parentIdx];
-      if (element <= parent) break;
+      if (element.priority >= parent.priority) break;
       this.val[parentIdx] = element;
       this.val[idx] = parent;
       idx = parentIdx;
     }
   }
-  extractMax() {
-    const max = this.val[0];
+  dequeue() {
+    const min = this.val[0];
     const end = this.val.pop();
     if (this.val.length > 0) {
       this.val[0] = end;
       this.sinkDown();
     }
-    return max;
+    return min;
   }
   sinkDown() {
     let idx = 0;
@@ -39,15 +47,15 @@ class MaxBinaryHeap {
 
       if (leftChildIdx < length) {
         leftChild = this.val[leftChildIdx];
-        if (leftChild > element) {
+        if (leftChild.priority < element.priority) {
           swap = leftChildIdx;
         }
       }
       if (rightChildIdx < length) {
         rightChild = this.val[rightChildIdx];
         if (
-          (swap === null && rightChild > element) ||
-          (swap !== null && rightChild > leftChild)
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
         ) {
           swap = rightChildIdx;
         }
@@ -61,7 +69,4 @@ class MaxBinaryHeap {
   }
 }
 
-const heap = new MaxBinaryHeap();
-
-// MBH -> add the element at the end and then bubble it up
-// BIG O = O(log n)
+const queue = new PriorityQueue();
