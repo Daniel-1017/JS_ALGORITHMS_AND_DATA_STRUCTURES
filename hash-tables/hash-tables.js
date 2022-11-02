@@ -54,6 +54,41 @@ class HashTable {
     }
     return undefined;
   }
+
+  keys() {
+    const keys = [];
+    for (let item of this.keyMap) {
+      if (item) {
+        for (let key of item) {
+          if (!keys.includes(key[0])) {
+            keys.push(key[0]);
+          }
+        }
+      }
+    }
+    return keys;
+  }
+
+  values() {
+    const values = [];
+    for (let item of this.keyMap) {
+      if (item) {
+        for (let value of item) {
+          if (!values.includes(value[1])) {
+            values.push(value[1]);
+          }
+        }
+      }
+    }
+    return values;
+  }
 }
 
 const hashTable = new HashTable();
+
+/* 
+BIG O - AVERAGE
+insertion - O(1)
+deletion - O(1)
+access - O(1)
+*/
