@@ -62,6 +62,24 @@ class Graph {
     }
     return result;
   }
+  breathFirstIterative(start) {
+    const queue = [start];
+    const visitedNodes = [];
+    const visited = {};
+    let firstVertex;
+    visited[start] = true;
+    while (queue.length) {
+      firstVertex = queue.shift();
+      visitedNodes.push(firstVertex);
+      this.adjacencyList[firstVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return visitedNodes;
+  }
 }
 
 const graph = new Graph();
