@@ -12,3 +12,13 @@ const fib_memo = (n, memo = []) => {
   memo[n] = res;
   return res;
 };
+
+// fibonacci tabulation
+const fib_table = (n) => {
+  if (n <= 2) return 1;
+  const fibNums = [0, 1, 1];
+  for (let i = 3; i <= n; i++) {
+    fibNums[i] = fibNums[i - 1] + fibNums[i - 2];
+  }
+  return fibNums[n];
+};
